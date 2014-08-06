@@ -14,24 +14,24 @@ Requirements:
  */
 var ads = [];
 
-ads.push({"title" : "boats","desc" : "boats boats boats!"});
+ads.push({"title" : "boats","desc" : "boats boats boats!"}); //pushing all the title and desc objects into the array
 ads.push({"title" : "Tubeman","desc" : "Wacky Waving Inflatable Arm-Flailing Tubeman!"});
 ads.push({"title" : "Covergirl","desc" : "Easy Breezy Beautiful Covergirl"});
 ads.push({"title" : "Crystal Meth" ,"desc" : "Crystal Meth: not even once."});
 ads.push({"title" : "Trix", "desc" : "Silly Rabbit! Trix are for kids!!"});
 
-function dotdotdot( title )
+function dotdotdot( title ) //fuction to add "..." to the title
 {
     document.title = title + "...";
 }
 
-function random(max)
+function random(max) // function to generate random number between 0 and the max number of the "ads" index
 {
    return Math.floor(Math.random()*max);
 }
 
-var randIndex = random(ads.length);
-console.log(randIndex);
+var randIndex = random(ads.length); // variable is equal to the random function with "ads.length" as the perameter
+console.log(randIndex); // test to see if random numbers worked
 
-dotdotdot(document.title = ads[randIndex].title);
-div.innerHTML = ads[randIndex].desc;
+dotdotdot(document.title = ads[randIndex].title); // using the functions to generate the random index number and add the "..."
+div.innerHTML = ads[randIndex].desc; // editing the innerhtml
