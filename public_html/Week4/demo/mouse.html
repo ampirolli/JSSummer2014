@@ -12,15 +12,31 @@ and open the template in the editor.
     </head>
     <body>
         <div>TODO write content</div>
+        <input type="text" id="email" value=""/>
         <script type="text/javascript">
             
+            var email = document.getElementById('email');
+            email.addEventListener('blur',emailSave);
+            
+            function emailSave(){
+                data.email = email.value;
+            }
+            
             var data = {
-                "mouseX" : []
+                "mouseX" : [],
+                "email" : ''
             };
             
             function trackMouse(e){
                 data.mouseX.push(e.clientX);
+                console.log(e.client);
+                
+                if(data.mouseX.length>100){
+                    document.removeEventListener('mousemove',trackMouse);
+                }
             }
+            
+            document.addEventListener('mousemove',trackMouse);
             
         </script>
     </body>
