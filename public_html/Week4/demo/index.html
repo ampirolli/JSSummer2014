@@ -12,8 +12,13 @@ and open the template in the editor.
     </head>
     <body>
         <div>TODO write content</div>
-        
+        <input type="button" id="btn" value="submit" onclick="submitForm();" />
         <script type ="text/javascript">
+             var submitBtn = document.getElementById('btn');
+             submitBtn.addEventListener('click',changeBGColor);
+             function submitForm(){
+                 console.log('submited');
+             }
              
         var data = 
              {
@@ -35,6 +40,10 @@ and open the template in the editor.
              //changeBGColor();
              
              document.addEventListener('click',changeBGColor);
+             
+             window.addEventListener('resize',changeBGColor);
+             
+             
             
             
             </script>
