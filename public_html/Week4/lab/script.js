@@ -24,14 +24,56 @@ mouse cords into the array.
     c. jsonVariable.ArrayVariable.push(e.clientX) (Do not name your variables this sample)
 
  */
+var userdata = {
+    "email" : '',
+    "UserName" : '',
+    "innerHeight" :'',
+    "innerWidth" : '',
+    "userAgent" : '',
+    "pageTitle" : '',
+    "mouseX" : [],
+    "mouseY" : []
+    
+};
+
+var email = document.getElementById('email');
+email.addEventListener('blur',saveEmail);
+function saveEmail(){
+    userdata.email = email.value;
+};
+
+var fullName = document.getElementById('fullname');
+fullName.addEventListener('blur', saveName);
+function saveName(){
+    userdata.UserName = fullName.value;
+};
 
 
-var userdata = {};
+function windowData(){
+    userdata.innerHeight = window.innerHeight;
+    userdata.innerWidth = window.innerWidth;
+    userdata.userAgent = window.navigator.userAgent;
+    userdata.title = document.title;
+};
+        window.onload = windowData();
+
+
+document.addEventListener('mousemove',trackMouse);
+function trackMouse(e){
+    userdata.mouseX.push(e.clientX);
+    userdata.mouseY.push(e.clientY);
+    if(userdata.mouseX.length>100/* && userdata.mouseY.lengeth >100*/){
+        document.removeEventListener('mousemove',trackMouse);
+    };
+}
+
+
+
 
 function showResults() {
     console.clear();
     console.log(userdata);
-}
+};
 
 var results = document.getElementById('showResults');
 
