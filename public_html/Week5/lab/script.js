@@ -24,20 +24,73 @@ function SpaceAlphaValidate( str ) {
 }
 
 function strip_HTML(str) {
-        var findHtml = /<(.|\n)*?>/gi;
-        return str.replace(findHtml,"");
+        var findHtml = /^[<](.|\n)*?>[>]$/gi;
+        return str.replace(findHtml,"");     
 }
 
+var emailRegex = /^[a-zA-Z0-9]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{3}$/;
+                       
 function submitform() {
 			
         var fname = document.getElementById('fname');
 
         if ( !fname.value.length ) {
-                console.log("Fname needs a length");
+                console.log("First name needs a length");
+                err_fname.innerHTML = "<p>First Name is not valid.</p>";
         } else if ( SpaceAlphaValidate( fname.value ) === false ) {
-                console.log("Fname needs Alpha chars");
+                console.log("First name needs Alpha chars");
+                err_fname.innerHTML = "<p>Last name needs Alpha chars</p>";
         } else {
-                console.log("Fname is good");
+                console.log("First name is good");
+                err_fname.innerHTML = "";
         }
+  /*----------------------------------------------------------------*/  
+        var fname = document.getElementById('lname');
+          
+        if ( !lname.value.length ) {
+                console.log("Last name needs a length");
+                err_lname.innerHTML = "<p>Last Name is not valid.</p>";
+        } else if ( SpaceAlphaValidate( lname.value ) === false ) {
+                console.log("Lastname needs Alpha chars");
+                err_lname.innerHTML = "<p>Last name needs Alpha chars</p>";
+        } else {
+                console.log("Last name is good");
+                err_lname.innerHTML = "";
+        }
+        var email = document.getElementById('email');
+        
+ /*---------------------------------------------------------------*/     
+ 
+        if ( emailRegex.test(email.value) ){
+            console.log(email.value+' is valid');
+            err_email.innerHTML = "";
+        }else{
+            console.log(email.value+' is Not valid');
+            err_email.innerHTML = "<p>Email is not valid.</p>";
 
+        }
+           
+ /*---------------------------------------------------------------*/
+ 
+        var comments = document.getElementById('comments');
+
+        if ( !comments.value.length ) {
+                console.log("Comments field needs a length");
+                err_comments.innerHTML = "<p>comments field is not valid.</p>";
+        } else if ( strip_HTML( comments.value ) === true ) {
+                console.log("Please Remove HTML script");
+                err_comments.innerHTML = "<p>Please remove HTML</p>";
+        } else {
+                console.log("Comments field is good");
+        }
+ 
+ 
+ 
+ 
+ 
 }
+
+
+document.getElementById('submit').addEventListener('onclick', submitform);      
+
+
