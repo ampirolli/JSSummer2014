@@ -37,6 +37,8 @@ function submitform() {
         if ( !fname.value.length ) {
                 console.log("First name needs a length");
                 err_fname.innerHTML = "<p>First Name is not valid.</p>";
+                
+
         } else if ( SpaceAlphaValidate( fname.value ) === false ) {
                 console.log("First name needs Alpha chars");
                 err_fname.innerHTML = "<p>Last name needs Alpha chars</p>";
@@ -50,6 +52,8 @@ function submitform() {
         if ( !lname.value.length ) {
                 console.log("Last name needs a length");
                 err_lname.innerHTML = "<p>Last Name is not valid.</p>";
+                
+
         } else if ( SpaceAlphaValidate( lname.value ) === false ) {
                 console.log("Lastname needs Alpha chars");
                 err_lname.innerHTML = "<p>Last name needs Alpha chars</p>";
@@ -64,37 +68,48 @@ function submitform() {
         if ( emailRegex.test(email.value) ){
             console.log(email.value+' is valid');
             err_email.innerHTML = "";
+            
+
         }else{
-            console.log(email.value+' is Not valid');
+            console.log(email.value+'Email is Not valid');
             err_email.innerHTML = "<p>Email is not valid.</p>";
 
         }
            
  /*---------------------------------------------------------------*/
  
+    
+    
         var comments = document.getElementById('comments');
+        comments.strip_HTML;
 
         if ( !comments.value.length ) {
                 console.log("Comments field needs a length");
                 err_comments.innerHTML = "<p>comments field is not valid.</p>";
-        } else if ( strip_HTML( comments.value ) === true ) {
-                console.log("Please Remove HTML script");
-                err_comments.innerHTML = "<p>Please remove HTML</p>";
-        } else {
+                var hasErrors = true;
+
+        } 
+         else {
                 console.log("Comments field is good");
+                err_comments.innerHTML = "";
+                
         }
  
+        var results = document.getElementById('results');
  
  
+ var mainform = document.getElementById('mainform');
+ if(!hasErrors){
+    console.log('displayblock');
+    mainform.style.display = 'none';
+   
+};
  
+ results.innerHTML = "<p>Here are your results:     Name: " + fname.value + " " + lname.value +", Email: " + email.value + ", Comments: " + comments.value + "<p>";
  
 }
 document.getElementById('submit').addEventListener('onclick', submitform);      
 
-if(!hasErrors){
-    
-    
-    
-};
+
 
 
