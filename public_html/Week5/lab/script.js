@@ -89,8 +89,12 @@ function submitform() {
  
  
 }
-
-
 document.getElementById('submit').addEventListener('onclick', submitform);      
+
+if(!hasErrors){
+    
+    
+    
+};
 
 
