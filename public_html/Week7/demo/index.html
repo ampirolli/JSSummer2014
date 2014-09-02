@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style type = "text/css">
+            div{border: 1px solid black;}
+        </style>
+        
+    </head>
+    <body>
+        <div id= "test1">TODO write content1</div>
+        <div class = "test2">TODO write content2</div>
+        <div class = "test2">TODO write content3</div>
+        
+        
+        
+        <script type = "text/javascript" src="jquery2.1.1.js"></script>
+        <script type = "text/javascript">
+            
+           
+            
+            $('#test1').click(function()
+            {
+                $(this).fadeToggle('slow', null, cb);
+            });
+            
+            
+            function cb()
+            {
+                $('.test2').css("background-color", "red").animate(
+                        {
+                            width: "70%",
+                            opacity: 0.4,
+                            marginLeft: "0.6in",
+                            fontSize: "3em",
+                            borderWidth: "10px",
+                            backgroundColor:"#336699"
+                        },
+                        2000
+                
+                );
+            }
+            
+        </script>
+    </body>
+</html>
