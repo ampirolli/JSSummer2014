@@ -21,10 +21,10 @@
 
 		 //http://canvas.site40.net/demopage.html	
 		// XML HTTP Request
-		var xhr = new XMLHttpRequest();
-		var content = document.getElementById('content');  
-		var showResults = document.getElementById('showResults');  
-		var url = "demo.php?page=";
+		var xhr = new XMLHttpRequest();					// Declares var to use in later functions
+		var content = document.getElementById('content');  		//get html element "content"
+		var showResults = document.getElementById('showResults');  	//get html element "show results"
+		var url = "demo.php?page=";					// declaring the url php page.
                 var step = 1;
 		
                 showResults.addEventListener('click',makeAJAXCall);
@@ -41,31 +41,31 @@
 		
 		xhr.onreadystatechange = function() { 
 									
-		   if (xhr.readyState==4 && xhr.status==200) {  
+		   if (xhr.readyState==4 && xhr.status==200) {  //returns the status of the document
 			callback();  
 		   } 
 		};  
 		
 		
-                function makeAJAXCall(){
+                function makeAJAXCall(){		//ajax call where items will load when the step is less than 5.
                     if ( step < 5 ) {                      
-                        xhr.open('GET', url+step, true);  
+                        xhr.open('GET', url+step, true);  //adds steps
                         xhr.send();   
                     }
                 }
 		
 		
                 
-		window.addEventListener('load', makeAJAXCall);
+		window.addEventListener('load', makeAJAXCall); //loads ajax function
 
 
                 function scrollCheck() {
 			if ( (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {				
-				makeAJAXCall();
+				makeAJAXCall();		 // tells when to call ajax when your y scroll and inner height is greater than the offset hight of the documenty.
 			}
 		}
 		
-		window.addEventListener("scroll", scrollCheck);
+		window.addEventListener("scroll", scrollCheck); // event listener to tack the scrolls
 		
 		
 		
