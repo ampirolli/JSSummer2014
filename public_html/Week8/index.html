@@ -52,6 +52,8 @@ hint:  Set the div to be "position: absolute;" in CSS.
     <body>
         
         <div id="test">ANTHONY PIROLLIIIIII</div>
+        <br/><br/>
+        
         <button id="fadein"> Fade In </button>
         <button id="fadeout"> Fade Out </button>
         <button id="movediv"> Move Div </button>
@@ -65,7 +67,7 @@ hint:  Set the div to be "position: absolute;" in CSS.
             
             function fiveSeconds () 
             {
-            alert('Hello!' + '\n\n' + 'Welcome to my page. it has been whole seconds!!');
+            alert('Hello!' + '\n\n' + 'Welcome to my page. it has been whole FIVE seconds!!');
             console.log("Timer Works!");
             }
             var clockTimer =  setTimeout(fiveSeconds, 5000);
@@ -138,27 +140,21 @@ hint:  Set the div to be "position: absolute;" in CSS.
 //------------------------------------------------------------------------------
   
             var btnmove = document.getElementById('movediv');  
-            btnmove.addEventListener('click',startMoveDiv);
-            var divPosRight = 0;
+            btnmove.addEventListener('click',moveDiv);
+            var divPosLeft = 40;
             
-            function startMoveDiv()
-            {
-                divPosRight = divPosRight + 10;
-                div.style.left = divPosLeft + "px";
-                
-                
-            }
             
-            /*function moveDiv()
+            function moveDiv()
             {
-                divPosRight = divPosRight + 10;
-                test.style.right =divPosRight+"px";
-                if (divPosRight > 0)
+                divPosLeft = divPosLeft + 100;
+                test.style.left =divPosLeft+"px";
+                if (divPosLeft < 1000)
                 {
-                    setTimeout(moveDiv, 200);
-                }
+                    divPosLeft += 20;
+                    setTimeout(moveDiv, 100);
+                }else{clearTimeout(moveDiv);}
                    
-            }*/
+            }
             
             
         </script>
