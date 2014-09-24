@@ -2,30 +2,39 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * 
+ *
  */
 
 
-function PhoneValidate( str ){
-        var alphaRegex = /^\(?([2-9]{1}[0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-        return alphaRegex.test(str);
-        // sets format for a valid phone number format
-}
-function EmailValidate( str ) {
-        var alphaRegex = /^[a-zA-Z0-9]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{3}$/;
-        return alphaRegex.test(str);
-        // sets format for a valid email format
-}
 
 function SpaceAlpha( str ) {
         var alphaRegex = /^[a-zA-Z ]+$/;
         return alphaRegex.test(str);
         
 }
+
+function EmailValidate( str ) {
+        var alphaRegex = /^[a-zA-Z0-9]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{3}$/;
+        return alphaRegex.test(str);
+        // sets format for a valid email format
+}
+
+function PhoneValidate( str ){
+        var alphaRegex = /^\(?([2-9]{1}[0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        return alphaRegex.test(str);
+        // sets format for a valid phone number format
+}
+
+
+
 function stripHTML(str) {
         var findHtml = /<(.|\n)*?>/gi;
         return str.replace(findHtml,"");
         //removes html from comments
 }
+
+var data = [];
 
 function submitForm(){
     
@@ -134,16 +143,12 @@ function submitForm(){
         userInfo.Phone = phone.value;
         userInfo.Description = description.value;
         
+        data.push(userInfo);
         //saves all the submited data into local storage
-        var dataString = JSON.stringify(userInfo);
-        localStorage.setItem(['User Info'],[dataString]);
-        localStorage.setItem(['Name'], [userInfo.Name]);
-        localStorage.setItem(['Email'], [userInfo.Email]);
-        localStorage.setItem(['Phone'], [userInfo.Phone]);
-        localStorage.setItem(['Description'], [userInfo.Description]);
+        var dataString = JSON.stringify(data);
+        localStorage.setItem('data',dataString);
         
-        console.log(dataString);
-        console.log(userInfo); 
+        console.log(dataString); 
   //-----------------------------------------------------------------------------   
         //resets the fields
         fullname.value = '';
@@ -152,28 +157,9 @@ function submitForm(){
         description.value = '';
   //-----------------------------------------------------------------------------  
 
-
         //this adds rows to the table and all the data in the correct cells
-        var tableData = document.getElementById('tableData');
-        {
-            var row = tableData.insertRow(0);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
-            var cell4 = row.insertCell(3);
-            var cell5 = row.insertCell(4);
-            cell1.innerHTML = '<input id="clearRowData" type="button" value="Clear" />';
-            cell2.innerHTML = localStorage.getItem(['Name']);
-            cell3.innerHTML = localStorage.getItem(['Email']);
-            cell4.innerHTML = localStorage.getItem(['Phone']);
-            cell5.innerHTML = localStorage.getItem(['Description']);
-        }
-        var clearRowData = document.getElementById('clearRowData').addEventListener('click',clearRowData);
-        function clearRowData(){
-  
-        document.getElementById('tableData').deleteRow;
-    
-};
+        displayData();
+            
     };
     
 };
@@ -184,7 +170,8 @@ function submitForm(){
 var deleteLast = document.getElementById('deleteLastRowData').addEventListener('click',deleteLast);
 function deleteLast(){
     //delete rows 
-    document.getElementById("tableData").deleteRow(0); 
+    document.getElementById("tableData").deleteRow(0);
+    // data 
     
 };
 
@@ -193,5 +180,29 @@ function clearAll(){
     //clears local storage
     
     localStorage.clear();
+    document.getElementById('tableData');
+    tableData.innerHTML = '';
   
 };
+
+function displayData(){
+    for(var i = 0, l = data.length; i < l; i++){
+            console.log(data[i].Name);
+        
+        var tableData = document.getElementById('tableData');
+        {
+            var row = tableData.insertRow(i);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            cell1.innerHTML = '<input id="clearRowData" type="button" value="Clear" />';
+            cell2.innerHTML = data[i].Name;
+            cell3.innerHTML = data[i].Email;
+            cell4.innerHTML = data[i].Phone;
+            cell5.innerHTML = data[i].Description;
+        }
+    }
+};
+
